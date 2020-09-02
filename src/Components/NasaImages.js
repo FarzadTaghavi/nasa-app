@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-import Image from "./Image";
+import Timeout from "await-timeout";
 
 function NasaImages() {
   const [getImages, showImages] = useState([]);
@@ -9,19 +8,24 @@ function NasaImages() {
   useEffect(() => {
     async function fetchNasaImages() {
       const res = await axios.get("https://apodapi.herokuapp.com/api/?count=5");
+      await Timeout.set(5000);
       showImages(res.data);
     }
     fetchNasaImages();
   }, []);
 
+  if (getImages.length === 0) {
+    return (
+      <img src="https://media1.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" />
+    );
+  }
+
   return (
     <div>
-      <div>
-        <h1>Nasa Images</h1>
-      </div>
+      <div></div>
       <div>
         {getImages.map((image) => (
-          <Image img={image.url} />
+          <img src={image.url} />
         ))}
       </div>
     </div>
