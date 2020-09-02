@@ -16,7 +16,10 @@ function NasaImages() {
 
   if (getImages.length === 0) {
     return (
-      <img src="https://media1.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" />
+      <img
+        alt="some info"
+        src="https://media1.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif"
+      />
     );
   }
 
@@ -25,7 +28,7 @@ function NasaImages() {
       <div></div>
       <div>
         {getImages.map((image) => (
-          <img src={image.url} />
+          <img key={image.url} alt={image.description} src={image.url} />
         ))}
       </div>
     </div>
