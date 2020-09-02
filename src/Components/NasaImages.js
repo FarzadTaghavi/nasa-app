@@ -21,7 +21,7 @@ function NasaImages() {
       <div>
         <h1>Nasa Images</h1>
       </div>
-      <div className="row">
+      <div>
         {getImages.map((image) => (
           <Image img={image.url} />
         ))}
